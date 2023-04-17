@@ -55,6 +55,100 @@ class Booking(db.Model):
     def __repr__(self):
         return '<Booking %r>' % self.id
     
+
+# Define the Employee model
+
+class Employee(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    bookings = db.relationship('Booking', backref='employee', lazy=True)
+
+    def __repr__(self):
+        return '<Employee %r>' % self.name
+    
+
+# Define the schedule model
+
+class Schedule(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    employee_id = db.Column(db.Integer, db.ForeignKey(
+        'employee.id'), nullable=False)
+    tee_time_id = db.Column(db.Integer, db.ForeignKey(
+        'tee_time.id'), nullable=False)
+
+    def __repr__(self):
+        return '<Schedule %r>' % self.id
+    
+# Define the Customer model
+
+class Customer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(50), nullable=False)
+    bookings = db.relationship('Booking', backref='customer', lazy=True)
+
+    def __repr__(self):
+        return '<Customer %r>' % self.name
+    
+#route to get the list of customers
+@app.route('/api/customers', methods=['GET'])
+def get_customers():
+    # Get all the customers from the database
+    customers = Customer.query.all()
+    results = []
+
+    # Convert the Customer objects to a list of dictionaries
+    for customer in customers:
+        customer_dict = {
+            'id': customer.id,
+            'name': customer.name,
+            'email': customer.email,
+            'password': customer.password
+        }
+        results.append(customer_dict)
+
+    return jsonify(results)
+
+#route to get the list of schedules
+@app.route('/api/schedules', methods=['GET'])
+def get_schedules():
+    # Get all the schedules from the database
+    schedules = Schedule.query.all()
+    results = []
+
+    # Convert the Schedule objects to a list of dictionaries
+    for schedule in schedules:
+        schedule_dict = {
+            'id': schedule.id,
+            'employee_id': schedule.employee_id,
+            'tee_time_id': schedule.tee_time_id
+        }
+        results.append(schedule_dict)
+
+    return jsonify(results)
+
+# Route to get the list of employees
+@app.route('/api/employees', methods=['GET'])
+def get_employees():
+    # Get all the employees from the database
+    employees = Employee.query.all()
+    results = []
+
+    # Convert the Employee objects to a list of dictionaries
+    for employee in employees:
+        employee_dict = {
+            'id': employee.id,
+            'name': employee.name,
+            'email': employee.email,
+            'password': employee.password
+        }
+        results.append(employee_dict)
+
+    return jsonify(results)
+
 # Route to get the list of bookings
 @app.route('/api/bookings', methods=['GET'])
 def get_bookings():
