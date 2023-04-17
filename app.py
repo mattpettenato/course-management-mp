@@ -43,6 +43,56 @@ user_tee_times = db.Table('user_tee_times',
                               'tee_time.id'), primary_key=True)
                           )
 
+
+# Define the Bookings model
+
+class Booking(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    tee_time_id = db.Column(db.Integer, db.ForeignKey(
+        'tee_time.id'), nullable=False)
+
+    def __repr__(self):
+        return '<Booking %r>' % self.id
+    
+# Route to get the list of bookings
+@app.route('/api/bookings', methods=['GET'])
+def get_bookings():
+    # Get all the bookings from the database
+    bookings = Booking.query.all()
+    results = []
+
+    # Convert the Booking objects to a list of dictionaries
+    for booking in bookings:
+        booking_dict = {
+            'id': booking.id,
+            'user_id': booking.user_id,
+            'tee_time_id': booking.tee_time_id
+        }
+        results.append(booking_dict)
+
+    return jsonify(results)
+
+# Route to get the list of users
+
+@app.route('/api/users', methods=['GET'])
+def get_users():
+    # Get all the users from the database
+    users = User.query.all()
+    results = []
+
+    # Convert the User objects to a list of dictionaries
+    for user in users:
+        user_dict = {
+            'id': user.id,
+            'name': user.name,
+            'email': user.email,
+            'password': user.password
+        }
+        results.append(user_dict)
+
+    return jsonify(results)
+
 # Route to get the list of tee times
 
 
