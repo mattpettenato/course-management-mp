@@ -2,8 +2,8 @@ from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from models.TeeTime import TeeTime
 from models.Booking import Booking
-# from app import db
-from ..database import db
+from app import db
+# from ..database import db
 import bcrypt
 
 db = SQLAlchemy()
