@@ -1,8 +1,14 @@
-from App import db
+# from ..app import db
+from ..database import db
+
 
 class TeeTime(db.Model):
+    __tablename__ = 'tee_times'
     id = db.Column(db.Integer, primary_key=True)
-    time = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.Date, nullable=False)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def __repr__(self):
-        return '<TeeTime %r>' % self.time
+        return '<TeeTime %r>' % self.id

@@ -1,4 +1,6 @@
-from App import db
+# from ..app import db
+from ..database import db
+
 
 # Define the Customer model
 
