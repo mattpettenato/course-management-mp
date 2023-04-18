@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from models.Booking import Booking
-from app import db
+from ..models.Booking import Booking
+from ..database import db
 
 bookings_bp = Blueprint('bookings', __name__)
 

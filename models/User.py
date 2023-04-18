@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from models.TeeTime import TeeTime
-from models.Booking import Booking
-from app import db
+from .TeeTime import TeeTime
+from .Booking import Booking
+# from app import db
 # from ..database import db
 import bcrypt
 
@@ -38,3 +38,4 @@ class User(db.Model):
 User.bookings = db.relationship('Booking', backref='user', lazy=True)
 # Add query property to the User model
 User.query = db.session.query_property()
+# db.init_app(app)

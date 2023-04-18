@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
-from models.Schedule import Schedule
-from app import db
+from ..models.Schedule import Schedule
+# from app import db
+from ..database import db
+
 
 schedules_bp = Blueprint('schedules', __name__)
 

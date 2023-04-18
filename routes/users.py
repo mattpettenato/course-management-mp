@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from flask import Blueprint, jsonify, request
 from werkzeug.security import check_password_hash
 from .. import db
-from models.User import User
+from ..models.User import User
 from flask import current_app as app
 
 users_bp = Blueprint('users', __name__, url_prefix='/api/users')

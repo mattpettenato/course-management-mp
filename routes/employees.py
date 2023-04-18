@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from models.Employee import Employee
-from app import db
+from ..models.Employee import Employee
+from ..database import db
 
 employees_bp = Blueprint('employee', __name__, url_prefix='/api/employees')
 
