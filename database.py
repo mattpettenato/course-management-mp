@@ -1,3 +1,3 @@
-from app import db  # import db from app
+from flask_sqlalchemy import SQLAlchemy
 
-# Create your database models here
+db = SQLAlchemy()

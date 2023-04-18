@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from models.TeeTime import TeeTime
+from ..models.TeeTime import TeeTime
 
 tee_times_bp = Blueprint('tee_times', __name__)
 
@@ -21,4 +21,3 @@ def get_tee_times():
         results.append(tee_time_dict)
 
     return jsonify(results)
-
