@@ -8,3 +8,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhos
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+

@@ -1,9 +1,6 @@
-from flask import Flask, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-from .TeeTime import TeeTime
 from .Booking import Booking
-# from app import db
-# from ..database import db
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 
 db = SQLAlchemy()
@@ -16,6 +13,8 @@ class User(db.Model):
     email = db.Column(db.String(50), nullable=False, unique=True)
     password_hash = db.Column(db.String(128), nullable=False)
     bookings = db.relationship('Booking', backref='user', lazy=True)
+
+    # Define the relationship with the TeeTime class
     teetimes = db.relationship('TeeTime', backref='user', lazy=True)
 
     @property
@@ -35,7 +34,10 @@ class User(db.Model):
         return '<User %r>' % self.name
 
 
-User.bookings = db.relationship('Booking', backref='user', lazy=True)
-# Add query property to the User model
+# Add the query property to the User model
 User.query = db.session.query_property()
-# db.init_app(app)
+
+# Add the relationships after the dependent classes have been defined
+Booking.user_id = db.ForeignKey(User.id)
+
+# Import the Booking class after the User class has been defined
