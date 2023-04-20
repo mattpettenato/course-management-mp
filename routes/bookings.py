@@ -7,6 +7,7 @@ bookings_bp = Blueprint('bookings', __name__)
 # Route to get the list of bookings
 @bookings_bp.route('/api/bookings', methods=['GET'])
 def get_bookings():
+    
     # Get all the bookings from the database
     bookings = Booking.query.all()
     results = []
