@@ -37,6 +37,13 @@ app.register_blueprint(employees_bp)
 app.register_blueprint(schedules_bp)
 app.register_blueprint(tee_times_bp)
 
+# app.register_blueprint(users_bp)
+# app.register_blueprint(bookings_bp)
+# app.register_blueprint(customers_bp)
+# app.register_blueprint(employees_bp)
+# app.register_blueprint(schedules_bp)
+# app.register_blueprint(tee_times_bp)
+
 # Default route
 
 
