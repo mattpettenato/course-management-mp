@@ -22,3 +22,24 @@ def get_bookings():
         results.append(booking_dict)
 
     return jsonify(results)
+
+
+# const reducer = (state: TodoState=initialState, action: any) = > {
+#     switch(action.type) {
+#         case ActionTypes.AddTodo:
+#         const newTodo: Todo = {
+#             id: state.todos.length + 1,
+#             title: action.payload.title,
+#             completed: false,
+#         }
+#         return {todos: [...state.todos, newTodo]}
+#         case ActionTypes.ToggleTodo:
+#         const todoToToggle = state.todos.find((todo)=> todo.id == = action.payload.id)
+#         if (todoToToggle) {
+
+#         }
+#         return {todos: [...state.todos]}
+#         default:
+#         return state
+#     }
+# }
