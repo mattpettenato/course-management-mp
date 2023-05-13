@@ -15,3 +15,8 @@ class Schedule(db.Model):
 
     def __repr__(self):
         return '<Schedule %r>' % self.id
+
+        # schedule_dict = {
+        #     'id': schedule.id,
+        #     'employee_id': schedule.employee_id,
+        #     'tee_time_id': schedule.tee_time_id
